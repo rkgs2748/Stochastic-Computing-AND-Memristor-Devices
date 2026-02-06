@@ -13,21 +13,36 @@
         }
         body { font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif; line-height: 1.8; color: var(--text-main); margin: 0; background: #fff; }
 
-        /* 头部设计 */
+        /* --- 头部设计 --- */
         header {
             background: linear-gradient(135deg, #002b5c 0%, #004098 100%);
             color: white;
-            padding: 80px 5%;
+            padding: 60px 5% 100px; /* 底部留多点空间给斜切角 */
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+            position: relative;
+            /* 电脑端保留漂亮的斜切角 */
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
-        header h1 { font-size: 2.4rem; margin-bottom: 15px; letter-spacing: 1px; font-weight: 700; }
+
+        .project-id-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        header h1 { font-size: 2.4rem; margin-bottom: 15px; letter-spacing: 1px; font-weight: 700; line-height: 1.3; }
         header .subtitle { font-size: 1.1rem; opacity: 0.95; font-weight: 300; }
 
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding-bottom: 60px; }
 
-        /* 模块通用样式 */
-        section { margin-top: 80px; }
+        /* --- 模块通用 --- */
+        section { margin-top: 60px; }
         .section-title {
             font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 60px;
             position: relative; font-weight: 700;
@@ -44,44 +59,45 @@
         }
         .cite-ref:hover { text-decoration: underline; color: var(--accent); }
 
-        /* 科普卡片 */
+        /* --- 科普卡片 --- */
         .intro-card {
             background: var(--tech-bg); border-radius: 16px; padding: 50px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.06); border-left: 6px solid var(--accent);
         }
         .intro-card h3 { color: var(--primary); font-size: 1.5rem; margin-top: 0; }
         .intro-content { column-count: 2; column-gap: 50px; text-align: justify; margin-bottom: 30px; }
-        @media (max-width: 768px) { .intro-content { column-count: 1; } }
 
         .highlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .highlight-item { background: white; padding: 25px; border-radius: 10px; text-align: center; border: 1px solid #e1e4e8; transition: transform 0.3s; }
         .highlight-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .highlight-item strong { display: block; color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; }
 
-        /* 论文成果板块 */
+        /* --- 论文成果板块 --- */
         .paper-block { margin-bottom: 100px; border-bottom: 1px solid #eee; padding-bottom: 60px; }
         .paper-block:last-child { border: none; }
 
         .paper-header { margin-bottom: 30px; }
-        .paper-tag { background: var(--primary); color: white; padding: 6px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-        .paper-name { font-size: 1.6rem; margin: 18px 0; color: #1a1a1a; font-weight: 700; line-height: 1.4; }
+        .paper-tag { background: var(--primary); color: white; padding: 6px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 10px;}
+        .paper-name { font-size: 1.6rem; margin: 10px 0; color: #1a1a1a; font-weight: 700; line-height: 1.4; }
 
-        /* 核心技术条 */
         .tech-deep-dive {
             background: #fff8f5; border-left: 5px solid var(--accent); padding: 25px;
             margin: 25px 0; color: #555; font-size: 1.05rem; line-height: 1.8; border-radius: 0 8px 8px 0;
         }
 
-        /* 图片布局 */
+        /* --- 图片布局 --- */
         .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin: 40px 0; }
         .gallery-item { display: flex; flex-direction: column; }
-        .img-placeholder {
-            background: #f4f6f9; border: 2px dashed #cfd8dc; height: 320px;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            color: #7f8c8d; border-radius: 10px; transition: all 0.3s; position: relative;
+
+        /* 图片通用样式 */
+        .paper-img {
+            width: 100%;
+            height: 650px; /* 电脑端默认高度，保持对齐 */
+            object-fit: contain;
+            background-color: #fbfbfb;
+            border-radius: 8px;
+            border: 1px solid #eee;
         }
-        .img-placeholder:hover { border-color: var(--primary); background: #ecf0f5; }
-        .img-placeholder i { font-style: normal; font-size: 0.9rem; margin-top: 10px; color: #95a5a6; }
 
         .img-caption {
             margin-top: 15px; font-size: 0.9rem; color: #666; background: #fafafa;
@@ -89,14 +105,14 @@
         }
         .img-caption strong { color: var(--primary); }
 
-        /* 数据仪表盘 */
+        /* --- 数据仪表盘 --- */
         .data-panel { display: flex; justify-content: space-around; background: #2c3e50; color: white; padding: 35px; border-radius: 12px; margin-top: 30px; box-shadow: 0 10px 25px rgba(44, 62, 80, 0.3); }
         .data-unit { text-align: center; flex: 1; border-right: 1px solid rgba(255,255,255,0.1); }
         .data-unit:last-child { border-right: none; }
         .data-val { font-size: 2.2rem; font-weight: bold; color: #4cd137; display: block; margin-bottom: 8px; }
         .data-desc { font-size: 0.9rem; opacity: 0.85; letter-spacing: 0.5px; }
 
-        /* 参考文献 */
+        /* --- 参考文献 --- */
         .ref-section { background: #f8f9fa; padding: 50px 70px; border-radius: 12px; font-size: 0.95rem; color: #666; margin-top: 80px; }
         .ref-section h3 { margin-top: 0; color: #333; border-bottom: 2px solid #e9ecef; padding-bottom: 15px; margin-bottom: 25px; }
         .ref-list { list-style-type: none; padding: 0; counter-reset: ref-counter; }
@@ -109,11 +125,44 @@
 
         footer { background: #0f1c2e; color: #bdc3c7; text-align: center; padding: 60px 0; margin-top: 0; }
         .funding-info { font-size: 1.1rem; color: #fff; margin-bottom: 15px; font-weight: 500; }
+
+        /* =========================================
+           移动端适配代码 (响应式设计核心)
+           当屏幕宽度小于 768px (手机/iPad竖屏) 时自动应用以下样式
+           ========================================= */
+        @media (max-width: 768px) {
+            /* 1. 头部调整 */
+            header { padding: 40px 5%; clip-path: none; /* 手机上取消斜切，节省空间 */ }
+            header h1 { font-size: 1.8rem; } /* 标题字号调小 */
+
+            /* 2. 科普板块变为单栏 */
+            .intro-content { column-count: 1; }
+            .intro-card { padding: 25px; }
+
+            /* 3. 亮点网格变为单列 */
+            .highlight-grid { grid-template-columns: 1fr; }
+
+            /* 4. 图片变为单列垂直排列 */
+            .gallery-grid { grid-template-columns: 1fr; gap: 20px; margin: 20px 0; }
+
+            /* 5. 关键：手机上图片高度自动，取消强制650px，防止图片过大 */
+            .paper-img { height: auto !important; max-height: 400px; }
+
+            /* 6. 数据仪表盘变为垂直排列 */
+            .data-panel { flex-direction: column; gap: 20px; padding: 25px; }
+            .data-unit { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+            .data-unit:last-child { border-bottom: none; padding-bottom: 0; }
+            .data-val { font-size: 1.8rem; }
+
+            /* 7. 参考文献调整 */
+            .ref-section { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="project-id-tag">项目批准号：No. 92264105</div>
     <h1>基于随机计算的忆阻神经网络能效提升关键技术研究</h1>
     <div class="subtitle">探索后摩尔时代的“存算一体”与“概率计算”新范式</div>
 </header>
@@ -164,16 +213,14 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="1_fig4.png" alt="PWM波形生成原理图"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="1_fig4.png" alt="PWM波形生成原理图" class="paper-img">
                     <div class="img-caption">
                         <strong>图 1：近传感器端编码机制。</strong>
                         如图所示，传统的 ADC 电路被移除。模拟信号 $V(t)$ 与三角波 $V_{tri}(t)$ 比较后，直接输出了携带信息的 PWM 波。这种设计大幅节省了芯片面积。
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="1_fig10.png" alt="卷积核权重分布演变图"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="1_fig10.png" alt="卷积核权重分布演变图" class="paper-img">
                     <div class="img-caption">
                         <strong>图 2：权重的二值化演变。</strong>
                         在协同训练算法下，网络权重从初始的高斯分布（图a）逐渐向 -1 和 +1 两极聚拢（图c），使极简的 2-bit 确定性编码也能完成高精度卷积。
@@ -209,16 +256,14 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="2_fig2.png" alt="PASCM 总体结构流图"
-                         style="width: 100%; height: 450px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="2_fig2.png" alt="PASCM 总体结构流图" class="paper-img">
                     <div class="img-caption">
                         <strong>图 3：PASCM 并行处理架构。</strong>
                         输入的二进制数被拆分为高低位部分，分别进入加权与门阵列。这种并行机制打破了随机计算的时序依赖，支持灵活的位宽配置。
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="2_fig5.png" alt="误差分布热力图"
-                         style="width: 100%; height: 450px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="2_fig5.png" alt="误差分布热力图" class="paper-img">
                     <div class="img-caption">
                         <strong>图 4：误差补偿效果。</strong>
                         热力图颜色越深代表误差越大。经过误差补偿机制优化后（PASCM_OP），高误差区域显著减少，证明了方案在近似计算中的高精度。
@@ -254,16 +299,14 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="3_fig1.png" alt="乘法器分区架构图"
-                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="3_fig1.png" alt="乘法器分区架构图" class="paper-img">
                     <div class="img-caption">
                         <strong>图 5：16周期极速架构。</strong>
                         通过特定的分区策略，该设计将传统串行的比特流处理并行化，大幅压缩了计算时间，特别适合对实时性要求极高的边缘 AI 推理任务。
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="3_table1.png" alt="与其他 SC 乘法器的性能对比"
-                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="3_table1.png" alt="与其他 SC 乘法器的性能对比" class="paper-img">
                     <div class="img-caption">
                         <strong>图 6：性能对比分析。</strong>
                         实验数据显示，该设计在面积效率上比现有的最优 SC 乘法器提升了 1.9 倍，同时单次乘法能耗降低了 52.38%。
@@ -299,16 +342,14 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="4_fig8.png" alt="比特翻转下的误差曲线"
-                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="4_fig8.png" alt="比特翻转下的误差曲线" class="paper-img">
                     <div class="img-caption">
                         <strong>图 7：比特翻转容错测试。</strong>
                         横轴代表乘数值，纵轴代表误差。当我们在电路中人为引入比特翻转错误（模拟忆阻器噪声）时，OXC 的误差波动远小于传统方法，展现出卓越的硬件鲁棒性。
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="4_fig1.png" alt="Peppers 图像去噪实验效果图"
-                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <img src="4_fig1.png" alt="Peppers 图像去噪实验效果图" class="paper-img">
                     <div class="img-caption">
                         <strong>图 8：图像处理应用实测。</strong>
                         在对 Peppers 图像施加 20% 噪声的情况下，基于 OXC 的高斯滤波电路实现了 14.1dB 的信噪比（SNR），视觉效果与二进制精确计算几乎无异。
