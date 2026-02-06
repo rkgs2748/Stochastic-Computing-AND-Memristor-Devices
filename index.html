@@ -210,7 +210,7 @@
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="2_fig2.png" alt="PASCM 总体结构流图"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                         style="width: 100%; height: 450px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
                     <div class="img-caption">
                         <strong>图 3：PASCM 并行处理架构。</strong>
                         输入的二进制数被拆分为高低位部分，分别进入加权与门阵列。这种并行机制打破了随机计算的时序依赖，支持灵活的位宽配置。
@@ -218,7 +218,7 @@
                 </div>
                 <div class="gallery-item">
                     <img src="2_fig5.png" alt="误差分布热力图"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                         style="width: 100%; height: 450px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
                     <div class="img-caption">
                         <strong>图 4：误差补偿效果。</strong>
                         热力图颜色越深代表误差越大。经过误差补偿机制优化后（PASCM_OP），高误差区域显著减少，证明了方案在近似计算中的高精度。
@@ -255,7 +255,7 @@
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="3_fig1.png" alt="乘法器分区架构图"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
                     <div class="img-caption">
                         <strong>图 5：16周期极速架构。</strong>
                         通过特定的分区策略，该设计将传统串行的比特流处理并行化，大幅压缩了计算时间，特别适合对实时性要求极高的边缘 AI 推理任务。
@@ -263,7 +263,7 @@
                 </div>
                 <div class="gallery-item">
                     <img src="3_table1.png" alt="与其他 SC 乘法器的性能对比"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
                     <div class="img-caption">
                         <strong>图 6：性能对比分析。</strong>
                         实验数据显示，该设计在面积效率上比现有的最优 SC 乘法器提升了 1.9 倍，同时单次乘法能耗降低了 52.38%。
@@ -300,7 +300,7 @@
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="4_fig8.png" alt="比特翻转下的误差曲线"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
                     <div class="img-caption">
                         <strong>图 7：比特翻转容错测试。</strong>
                         横轴代表乘数值，纵轴代表误差。当我们在电路中人为引入比特翻转错误（模拟忆阻器噪声）时，OXC 的误差波动远小于传统方法，展现出卓越的硬件鲁棒性。
@@ -308,7 +308,7 @@
                 </div>
                 <div class="gallery-item">
                     <img src="4_fig1.png" alt="Peppers 图像去噪实验效果图"
-                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                         style="width: 100%; height: 500px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
                     <div class="img-caption">
                         <strong>图 8：图像处理应用实测。</strong>
                         在对 Peppers 图像施加 20% 噪声的情况下，基于 OXC 的高斯滤波电路实现了 14.1dB 的信噪比（SNR），视觉效果与二进制精确计算几乎无异。
