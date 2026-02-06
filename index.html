@@ -1,10 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>My GitHub Pages Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研成果展示 | 确定性随机计算与边缘智能神经网络</title>
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --tech-green: #28a745;
+            --bg-light: #f8f9fa;
+            --text-main: #2c3e50;
+        }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin: 0;
+            background-color: #fff;
+        }
+        header {
+            background: linear-gradient(135deg, #003366 0%, #0056b3 100%);
+            color: white;
+            padding: 4rem 10%;
+            text-align: center;
+        }
+        .container { width: 85%; max-width: 1100px; margin: 0 auto; padding: 2rem 0; }
+
+        /* 科普板块样式 */
+        .science-intro {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-bottom: 4px solid var(--tech-green);
+        }
+        .science-intro h2 { color: var(--tech-green); margin-top: 0; }
+
+        /* 论文板块样式 */
+        .paper-section { margin-bottom: 4rem; border-top: 1px solid #eee; padding-top: 2rem; }
+        .paper-tag {
+            display: inline-block; background: var(--primary-blue); color: white;
+            padding: 2px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;
+        }
+        .paper-title { font-size: 1.5rem; color: #1a1a1a; margin-bottom: 1.5rem; line-height: 1.3; }
+
+        /* 图片展示框 */
+        .fig-box {
+            background: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 8px;
+            margin: 20px 0; padding: 15px; text-align: center;
+        }
+        .fig-placeholder {
+            background: #f0f0f0; border: 2px dashed #bbb; color: #888;
+            height: 250px; display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; margin-bottom: 10px;
+        }
+        .fig-caption { font-size: 0.9rem; color: #666; font-style: italic; }
+
+        /* 核心指标表格 */
+        .data-table {
+            width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem;
+        }
+        .data-table th { background: #eee; padding: 10px; border: 1px solid #ddd; }
+        .data-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+
+        .highlight-box {
+            background: #e7f3ff; border-left: 5px solid var(--primary-blue);
+            padding: 15px; margin: 15px 0;
+        }
+        footer { background: #333; color: #ccc; text-align: center; padding: 3rem; margin-top: 4rem; }
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub Pages!</h1>
-    <p>This is my first GitHub Pages website.</p>
+
+<header>
+    <h1>让AI更轻快：基于确定性编码的低功耗计算技术</h1>
+    <p>项目成果科普展示网站 | 推进科研成果共享与社会传播</p>
+</header>
+
+<div class="container">
+
+    <section class="science-intro">
+        <h2>💡 这里的“黑科技”是什么？</h2>
+        <p>
+            在传统的电脑和手机里，数字是用复杂的二进制（0和1的长组合）来表示的。这虽然精确，但在处理海量的人工智能运算时，就像在拥挤的高速公路上开车，非常耗电。
+        </p>
+        <p>
+            我们的研究核心是<b>“随机计算 (Stochastic Computing)”</b>。你可以把它想象成“投骰子”：
+            我们要表示数字 0.5，不再给它一个复杂的编码，而是产生一串比特流，其中一半是 1，一半是 0。
+        </p>
+        <ul>
+            <li><b>超级省电：</b> 一个简单的“与门”电路就能完成高难度的乘法运算 [cite: 45, 76, 854]。</li>
+            <li><b>不怕出错：</b> 就像一串珍珠项链丢了一颗珠子依然很美，比特流中偶尔错一两个位，计算结果几乎不受影响 [cite: 82, 668]。</li>
+            <li><b>更进一步：</b> 我们提出了“确定性编码”，让原本乱序的信号变得有规律，从而在更短的信号长度下实现更高的精度 [cite: 24, 25, 26]。</li>
+        </ul>
+    </section>
+
+    <h2>项目核心研究成果</h2>
+
+    <article class="paper-section">
+        <span class="paper-tag">成果一：系统优化</span>
+        <div class="paper-title">基于确定性编码的低成本、高能效卷积神经网络设计 [cite: 13]</div>
+
+        <p><strong>研究内容：</strong> 针对边缘端传感器（如智能摄像头）面临的存储和带宽压力，我们提出了一种混合编码方案。通过直接将传感器的模拟信号转换为确定性比特流，消除了昂贵的 ADC（模数转换）环节 。 </p>
+
+        <div class="fig-box">
+            <div class="fig-placeholder">【此处插入：Figure 4. 脉宽调制(PWM)波形生成原理图】</div>
+            <div class="fig-caption">图 1：将传感器模拟电压信号直接编码为时域确定性比特流的原理 [cite: 248]</div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>关键结论：</strong> 相比传统随机计算方案，我们将比特流长度缩短了 <span style="color:red">64 倍</span>，且在仅用 2-bit 输入的情况下，MNIST 图像识别率仍高达 <span style="color:red">99.01%</span> [cite: 27, 673]。
+        </div>
+    </article>
+
+    <article class="paper-section">
+        <span class="paper-tag">成果二：硬件乘法器</span>
+        <div class="paper-title">PASCM：成本与速度协同优化的并行随机乘法器 [cite: 812, 820]</div>
+
+        <p><strong>研究内容：</strong> 乘法是神经网络中负担最重的运算。我们设计了 PASCM 乘法器，它支持二进制直接输入和输出，能无缝集成到现有的电子系统中，且特别适合高位宽（如 8-bit 或 16-bit）的运算场景 [cite: 820, 821, 1215]。 </p>
+
+        <div class="fig-box">
+            <div class="fig-placeholder">【此处插入：Figure 2. PASCM 总体结构与运算流图】</div>
+            <div class="fig-caption">图 2：PASCM 乘法器的分区并行架构，包含加权与门和 OR 树形累加 [cite: 910]</div>
+        </div>
+
+        <p><strong>硬件性能优势：</strong></p>
+        <table class="data-table">
+            <tr>
+                <th>对比指标 (8-bit)</th>
+                <th>传统二进制 IP 核</th>
+                <th>PASCM (本方案)</th>
+                <th>提升幅度</th>
+            </tr>
+            <tr>
+                <td>查找表 (LUT) 使用量</td>
+                <td>60 [cite: 1103]</td>
+                <td>31 [cite: 1107]</td>
+                <td>减少 48.33% [cite: 1169]</td>
+            </tr>
+            <tr>
+                <td>计算延迟 (ns)</td>
+                <td>4.56 [cite: 1104]</td>
+                <td>3.71 [cite: 1107]</td>
+                <td>缩短 18.61% [cite: 1169]</td>
+            </tr>
+            <tr>
+                <td>能效比 (TOPS/W)</td>
+                <td>-</td>
+                <td>-</td>
+                <td>提升 12 倍 (较传统SC) [cite: 28]</td>
+            </tr>
+        </table>
+    </article>
+
+    <article class="paper-section">
+        <span class="paper-tag">成果三：算法鲁棒性</span>
+        <div class="paper-title">一种对相关性不敏感的高精度随机计算乘法器 (OXC) [cite: 1593, 1623]</div>
+
+        <p><strong>研究内容：</strong> 传统随机计算最怕“比特流撞车”（相关性过高导致精度下降）。我们设计的 OXC 乘法器通过非缩放优化电路，实现了即使在输入信号完全正相关的情况下也能精确运算，并应用于图像高斯滤波实验 [cite: 1605, 1607, 1623, 1681]。 </p>
+
+        <div class="fig-box">
+            <div class="fig-placeholder">【此处插入：图 8. 引入比特翻转后的精度变化对比图】</div>
+            <div class="fig-caption">图 3：在存在随机干扰（比特翻转）时，OXC 乘法器展现出的强大容错能力 [cite: 1729, 1730]</div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>实验对比：</strong> 在 Peppers 图像去噪实验中，OXC 实现的滤波效果几乎与二进制精确计算一致，且节省了 <span style="color:red">82.50%</span> 的电路面积 [cite: 1611, 1786]。
+        </div>
+    </article>
+
+</div>
+
+<footer>
+    <p>本研究受国家自然科学基金 (No. 92264105) 等项目资助 [cite: 717, 833, 1545]</p>
+    <p>© 2026 低功耗集成电路研究小组 | 北京信息科技大学</p>
+</footer>
+
 </body>
 </html>
