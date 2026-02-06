@@ -3,177 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科研成果展示 | 确定性随机计算与边缘智能神经网络</title>
+    <title>项目成果 | 基于随机计算的忆阻神经网络能效提升关键技术研究</title>
     <style>
         :root {
-            --primary-blue: #0056b3;
-            --tech-green: #28a745;
-            --bg-light: #f8f9fa;
+            --primary: #004098; /* 北信科蓝 */
+            --accent: #d35400;  /* 活力橙 */
+            --tech-bg: #f5f7fa;
             --text-main: #2c3e50;
         }
-        body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            line-height: 1.8;
-            color: var(--text-main);
-            margin: 0;
-            background-color: #fff;
-        }
+        body { font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif; line-height: 1.8; color: var(--text-main); margin: 0; background: #fff; }
+
+        /* 头部设计 */
         header {
-            background: linear-gradient(135deg, #003366 0%, #0056b3 100%);
+            background: linear-gradient(135deg, #002b5c 0%, #004098 100%);
             color: white;
-            padding: 4rem 10%;
+            padding: 80px 5%;
             text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
         }
-        .container { width: 85%; max-width: 1100px; margin: 0 auto; padding: 2rem 0; }
+        header h1 { font-size: 2.4rem; margin-bottom: 15px; letter-spacing: 1px; font-weight: 700; }
+        header .subtitle { font-size: 1.1rem; opacity: 0.95; font-weight: 300; }
 
-        /* 科普板块样式 */
-        .science-intro {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            border-bottom: 4px solid var(--tech-green);
-        }
-        .science-intro h2 { color: var(--tech-green); margin-top: 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding-bottom: 60px; }
 
-        /* 论文板块样式 */
-        .paper-section { margin-bottom: 4rem; border-top: 1px solid #eee; padding-top: 2rem; }
-        .paper-tag {
-            display: inline-block; background: var(--primary-blue); color: white;
-            padding: 2px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1rem;
+        /* 模块通用样式 */
+        section { margin-top: 80px; }
+        .section-title {
+            font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 60px;
+            position: relative; font-weight: 700;
         }
-        .paper-title { font-size: 1.5rem; color: #1a1a1a; margin-bottom: 1.5rem; line-height: 1.3; }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px; background: var(--accent);
+            margin: 15px auto 0; border-radius: 2px;
+        }
 
-        /* 图片展示框 */
-        .fig-box {
-            background: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 8px;
-            margin: 20px 0; padding: 15px; text-align: center;
+        /* 引用上标 */
+        .cite-ref {
+            font-size: 0.75rem; vertical-align: super; color: var(--primary);
+            font-weight: bold; text-decoration: none; margin-left: 2px;
         }
-        .fig-placeholder {
-            background: #f0f0f0; border: 2px dashed #bbb; color: #888;
-            height: 250px; display: flex; align-items: center; justify-content: center;
-            font-size: 0.9rem; margin-bottom: 10px;
-        }
-        .fig-caption { font-size: 0.9rem; color: #666; font-style: italic; }
+        .cite-ref:hover { text-decoration: underline; color: var(--accent); }
 
-        /* 核心指标表格 */
-        .data-table {
-            width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem;
+        /* 科普卡片 */
+        .intro-card {
+            background: var(--tech-bg); border-radius: 16px; padding: 50px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06); border-left: 6px solid var(--accent);
         }
-        .data-table th { background: #eee; padding: 10px; border: 1px solid #ddd; }
-        .data-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        .intro-card h3 { color: var(--primary); font-size: 1.5rem; margin-top: 0; }
+        .intro-content { column-count: 2; column-gap: 50px; text-align: justify; margin-bottom: 30px; }
+        @media (max-width: 768px) { .intro-content { column-count: 1; } }
 
-        .highlight-box {
-            background: #e7f3ff; border-left: 5px solid var(--primary-blue);
-            padding: 15px; margin: 15px 0;
+        .highlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .highlight-item { background: white; padding: 25px; border-radius: 10px; text-align: center; border: 1px solid #e1e4e8; transition: transform 0.3s; }
+        .highlight-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .highlight-item strong { display: block; color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; }
+
+        /* 论文成果板块 */
+        .paper-block { margin-bottom: 100px; border-bottom: 1px solid #eee; padding-bottom: 60px; }
+        .paper-block:last-child { border: none; }
+
+        .paper-header { margin-bottom: 30px; }
+        .paper-tag { background: var(--primary); color: white; padding: 6px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .paper-name { font-size: 1.6rem; margin: 18px 0; color: #1a1a1a; font-weight: 700; line-height: 1.4; }
+
+        /* 核心技术条 */
+        .tech-deep-dive {
+            background: #fff8f5; border-left: 5px solid var(--accent); padding: 25px;
+            margin: 25px 0; color: #555; font-size: 1.05rem; line-height: 1.8; border-radius: 0 8px 8px 0;
         }
-        footer { background: #333; color: #ccc; text-align: center; padding: 3rem; margin-top: 4rem; }
+
+        /* 图片布局 */
+        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; margin: 40px 0; }
+        .gallery-item { display: flex; flex-direction: column; }
+        .img-placeholder {
+            background: #f4f6f9; border: 2px dashed #cfd8dc; height: 320px;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            color: #7f8c8d; border-radius: 10px; transition: all 0.3s; position: relative;
+        }
+        .img-placeholder:hover { border-color: var(--primary); background: #ecf0f5; }
+        .img-placeholder i { font-style: normal; font-size: 0.9rem; margin-top: 10px; color: #95a5a6; }
+
+        .img-caption {
+            margin-top: 15px; font-size: 0.9rem; color: #666; background: #fafafa;
+            padding: 15px; border-radius: 6px; border-left: 4px solid #ddd; text-align: justify;
+        }
+        .img-caption strong { color: var(--primary); }
+
+        /* 数据仪表盘 */
+        .data-panel { display: flex; justify-content: space-around; background: #2c3e50; color: white; padding: 35px; border-radius: 12px; margin-top: 30px; box-shadow: 0 10px 25px rgba(44, 62, 80, 0.3); }
+        .data-unit { text-align: center; flex: 1; border-right: 1px solid rgba(255,255,255,0.1); }
+        .data-unit:last-child { border-right: none; }
+        .data-val { font-size: 2.2rem; font-weight: bold; color: #4cd137; display: block; margin-bottom: 8px; }
+        .data-desc { font-size: 0.9rem; opacity: 0.85; letter-spacing: 0.5px; }
+
+        /* 参考文献 */
+        .ref-section { background: #f8f9fa; padding: 50px 70px; border-radius: 12px; font-size: 0.95rem; color: #666; margin-top: 80px; }
+        .ref-section h3 { margin-top: 0; color: #333; border-bottom: 2px solid #e9ecef; padding-bottom: 15px; margin-bottom: 25px; }
+        .ref-list { list-style-type: none; padding: 0; counter-reset: ref-counter; }
+        .ref-list li { margin-bottom: 18px; padding-left: 35px; position: relative; word-break: break-word; line-height: 1.6; }
+        .ref-list li::before {
+            counter-increment: ref-counter;
+            content: "[" counter(ref-counter) "]";
+            position: absolute; left: 0; top: 0; color: var(--primary); font-weight: bold;
+        }
+
+        footer { background: #0f1c2e; color: #bdc3c7; text-align: center; padding: 60px 0; margin-top: 0; }
+        .funding-info { font-size: 1.1rem; color: #fff; margin-bottom: 15px; font-weight: 500; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>让AI更轻快：基于确定性编码的低功耗计算技术</h1>
-    <p>项目成果科普展示网站 | 推进科研成果共享与社会传播</p>
+    <h1>基于随机计算的忆阻神经网络能效提升关键技术研究</h1>
+    <div class="subtitle">探索后摩尔时代的“存算一体”与“概率计算”新范式</div>
 </header>
 
 <div class="container">
 
-    <section class="science-intro">
-        <h2>💡 这里的“黑科技”是什么？</h2>
-        <p>
-            在传统的电脑和手机里，数字是用复杂的二进制（0和1的长组合）来表示的。这虽然精确，但在处理海量的人工智能运算时，就像在拥挤的高速公路上开车，非常耗电。
-        </p>
-        <p>
-            我们的研究核心是<b>“随机计算 (Stochastic Computing)”</b>。你可以把它想象成“投骰子”：
-            我们要表示数字 0.5，不再给它一个复杂的编码，而是产生一串比特流，其中一半是 1，一半是 0。
-        </p>
-        <ul>
-            <li><b>超级省电：</b> 一个简单的“与门”电路就能完成高难度的乘法运算 [cite: 45, 76, 854]。</li>
-            <li><b>不怕出错：</b> 就像一串珍珠项链丢了一颗珠子依然很美，比特流中偶尔错一两个位，计算结果几乎不受影响 [cite: 82, 668]。</li>
-            <li><b>更进一步：</b> 我们提出了“确定性编码”，让原本乱序的信号变得有规律，从而在更短的信号长度下实现更高的精度 [cite: 24, 25, 26]。</li>
-        </ul>
+    <section>
+        <div class="section-title">研究背景与核心理念</div>
+        <div class="intro-card">
+            <h3>🔬 为什么是“忆阻器” + “随机计算”？</h3>
+            <div class="intro-content">
+                <p>
+                    随着人工智能算法的爆发，传统的冯·诺依曼架构面临着“存储墙”和“功耗墙”的双重限制。<b>忆阻器 (Memristor)</b> 作为一种新型纳米电子器件，具备天然的“存算一体”特性，是构建下一代神经网络芯片的理想载体。然而，忆阻器在制造和运行中存在的非理想性（如噪声、器件差异）是其大规模应用的拦路虎。
+                </p>
+                <p>
+                    <b>随机计算 (Stochastic Computing, SC)</b> 的出现巧妙化解了这一难题。SC 不依赖精确的电压值，而是通过脉冲序列的<b>“概率密度”</b>来传递信息。这种计算范式天生具有极强的<b>容错性</b>——即使硬件本身存在噪点或个别脉冲丢失，宏观上的概率统计结果依然准确。我们的研究正是结合了这两者的优势，并利用<b>确定性编码</b>技术解决了传统 SC 计算速度慢的痛点，实现了高能效、高鲁棒性的边缘智能计算。
+                </p>
+            </div>
+            <div class="highlight-grid">
+                <div class="highlight-item">
+                    <strong>抗噪性 (Robustness)</strong>
+                    利用概率统计原理，完美抵消忆阻器器件的本征噪声与工艺偏差。
+                </div>
+                <div class="highlight-item">
+                    <strong>超低功耗 (Low Power)</strong>
+                    将复杂的乘法运算简化为单个逻辑门，能效比传统芯片提升数个数量级。
+                </div>
+                <div class="highlight-item">
+                    <strong>确定性加速 (Deterministic)</strong>
+                    创新引入 PWM 编码，将随机计算的延迟降低 90% 以上，满足实时性需求。
+                </div>
+            </div>
+        </div>
     </section>
 
-    <h2>项目核心研究成果</h2>
+    <section>
+        <div class="section-title">关键技术突破与研究成果</div>
 
-    <article class="paper-section">
-        <span class="paper-tag">成果一：系统优化</span>
-        <div class="paper-title">基于确定性编码的低成本、高能效卷积神经网络设计 [cite: 13]</div>
+        <div class="paper-block">
+            <div class="paper-header">
+                <span class="paper-tag">成果一：系统架构创新</span>
+                <div class="paper-name">基于近传感器端确定性编码的高能效 CNN 硬件架构 <a href="#ref-list" class="cite-ref">[1]</a></div>
+            </div>
 
-        <p><strong>研究内容：</strong> 针对边缘端传感器（如智能摄像头）面临的存储和带宽压力，我们提出了一种混合编码方案。通过直接将传感器的模拟信号转换为确定性比特流，消除了昂贵的 ADC（模数转换）环节 。 </p>
+            <div class="tech-deep-dive">
+                <b>技术核心：</b> 针对边缘端图像传感器数据量大的问题，我们设计了一种无需 ADC（模数转换器）的直接编码方案。利用模拟信号生成 PWM 波，并结合协同优化训练算法，使得神经网络首层可以直接处理确定性比特流。
+            </div>
 
-        <div class="fig-box">
-            <div class="fig-placeholder">【此处插入：Figure 4. 脉宽调制(PWM)波形生成原理图】</div>
-            <div class="fig-caption">图 1：将传感器模拟电压信号直接编码为时域确定性比特流的原理 [cite: 248]</div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="1_fig4.png" alt="PWM波形生成原理图"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 1：近传感器端编码机制。</strong>
+                        如图所示，传统的 ADC 电路被移除。模拟信号 $V(t)$ 与三角波 $V_{tri}(t)$ 比较后，直接输出了携带信息的 PWM 波。这种设计大幅节省了芯片面积。
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="1_fig10.png" alt="卷积核权重分布演变图"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 2：权重的二值化演变。</strong>
+                        在协同训练算法下，网络权重从初始的高斯分布（图a）逐渐向 -1 和 +1 两极聚拢（图c），使极简的 2-bit 确定性编码也能完成高精度卷积。
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-panel">
+                <div class="data-unit">
+                    <span class="data-val">99.01%</span>
+                    <span class="data-desc">2-bit 输入识别率</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">60.47% ↓</span>
+                    <span class="data-desc">功耗降低 (vs 2-bit SC)</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">44.98% ↓</span>
+                    <span class="data-desc">面积节省 (vs 2-bit SC)</span>
+                </div>
+            </div>
         </div>
 
-        <div class="highlight-box">
-            <strong>关键结论：</strong> 相比传统随机计算方案，我们将比特流长度缩短了 <span style="color:red">64 倍</span>，且在仅用 2-bit 输入的情况下，MNIST 图像识别率仍高达 <span style="color:red">99.01%</span> [cite: 27, 673]。
-        </div>
-    </article>
+        <div class="paper-block">
+            <div class="paper-header">
+                <span class="paper-tag">成果二：算子电路设计</span>
+                <div class="paper-name">PASCM：支持可变位宽的并行近似随机计算乘法器 <a href="#ref-list" class="cite-ref">[2]</a></div>
+            </div>
 
-    <article class="paper-section">
-        <span class="paper-tag">成果二：硬件乘法器</span>
-        <div class="paper-title">PASCM：成本与速度协同优化的并行随机乘法器 [cite: 812, 820]</div>
+            <div class="tech-deep-dive">
+                <b>技术核心：</b> 针对多位宽（Variable Bit-Widths）应用场景，提出了一种成本与速度协同优化的并行架构。通过“加权与门”和“OR树近似累加”，解决了传统 SC 在处理 8-bit 以上高精度数据时延迟过高的问题。
+            </div>
 
-        <p><strong>研究内容：</strong> 乘法是神经网络中负担最重的运算。我们设计了 PASCM 乘法器，它支持二进制直接输入和输出，能无缝集成到现有的电子系统中，且特别适合高位宽（如 8-bit 或 16-bit）的运算场景 [cite: 820, 821, 1215]。 </p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="2_fig2.png" alt="PASCM 总体结构流图"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 3：PASCM 并行处理架构。</strong>
+                        输入的二进制数被拆分为高低位部分，分别进入加权与门阵列。这种并行机制打破了随机计算的时序依赖，支持灵活的位宽配置。
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="2_fig5.png" alt="误差分布热力图"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 4：误差补偿效果。</strong>
+                        热力图颜色越深代表误差越大。经过误差补偿机制优化后（PASCM_OP），高误差区域显著减少，证明了方案在近似计算中的高精度。
+                    </div>
+                </div>
+            </div>
 
-        <div class="fig-box">
-            <div class="fig-placeholder">【此处插入：Figure 2. PASCM 总体结构与运算流图】</div>
-            <div class="fig-caption">图 2：PASCM 乘法器的分区并行架构，包含加权与门和 OR 树形累加 [cite: 910]</div>
-        </div>
-
-        <p><strong>硬件性能优势：</strong></p>
-        <table class="data-table">
-            <tr>
-                <th>对比指标 (8-bit)</th>
-                <th>传统二进制 IP 核</th>
-                <th>PASCM (本方案)</th>
-                <th>提升幅度</th>
-            </tr>
-            <tr>
-                <td>查找表 (LUT) 使用量</td>
-                <td>60 [cite: 1103]</td>
-                <td>31 [cite: 1107]</td>
-                <td>减少 48.33% [cite: 1169]</td>
-            </tr>
-            <tr>
-                <td>计算延迟 (ns)</td>
-                <td>4.56 [cite: 1104]</td>
-                <td>3.71 [cite: 1107]</td>
-                <td>缩短 18.61% [cite: 1169]</td>
-            </tr>
-            <tr>
-                <td>能效比 (TOPS/W)</td>
-                <td>-</td>
-                <td>-</td>
-                <td>提升 12 倍 (较传统SC) [cite: 28]</td>
-            </tr>
-        </table>
-    </article>
-
-    <article class="paper-section">
-        <span class="paper-tag">成果三：算法鲁棒性</span>
-        <div class="paper-title">一种对相关性不敏感的高精度随机计算乘法器 (OXC) [cite: 1593, 1623]</div>
-
-        <p><strong>研究内容：</strong> 传统随机计算最怕“比特流撞车”（相关性过高导致精度下降）。我们设计的 OXC 乘法器通过非缩放优化电路，实现了即使在输入信号完全正相关的情况下也能精确运算，并应用于图像高斯滤波实验 [cite: 1605, 1607, 1623, 1681]。 </p>
-
-        <div class="fig-box">
-            <div class="fig-placeholder">【此处插入：图 8. 引入比特翻转后的精度变化对比图】</div>
-            <div class="fig-caption">图 3：在存在随机干扰（比特翻转）时，OXC 乘法器展现出的强大容错能力 [cite: 1729, 1730]</div>
+            <div class="data-panel">
+                <div class="data-unit">
+                    <span class="data-val">48.33% ↓</span>
+                    <span class="data-desc">LUT 资源节省</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">18.61% ↓</span>
+                    <span class="data-desc">计算延迟降低</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">57.95% ↓</span>
+                    <span class="data-desc">ADP (面积延迟积) 优化</span>
+                </div>
+            </div>
         </div>
 
-        <div class="highlight-box">
-            <strong>实验对比：</strong> 在 Peppers 图像去噪实验中，OXC 实现的滤波效果几乎与二进制精确计算一致，且节省了 <span style="color:red">82.50%</span> 的电路面积 [cite: 1611, 1786]。
+        <div class="paper-block">
+            <div class="paper-header">
+                <span class="paper-tag">成果三：极致速度优化</span>
+                <div class="paper-name">基于面积与延迟协同优化的高精度随机计算乘法器 (ASICON) <a href="#ref-list" class="cite-ref">[3]</a></div>
+            </div>
+
+            <div class="tech-deep-dive">
+                <b>技术核心：</b> 这项研究聚焦于“极致速度”。通过将乘法器深度分区（Partitioning）并生成并行比特流，我们实现了一个仅需 <b>16 个时钟周期</b> 即可完成 8-bit 乘法的架构，相较于传统随机计算（需 256 周期）实现了数量级的飞跃。
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="3_fig1.png" alt="乘法器分区架构图"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 5：16周期极速架构。</strong>
+                        通过特定的分区策略，该设计将传统串行的比特流处理并行化，大幅压缩了计算时间，特别适合对实时性要求极高的边缘 AI 推理任务。
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="3_table1.png" alt="与其他 SC 乘法器的性能对比"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 6：性能对比分析。</strong>
+                        实验数据显示，该设计在面积效率上比现有的最优 SC 乘法器提升了 1.9 倍，同时单次乘法能耗降低了 52.38%。
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-panel">
+                <div class="data-unit">
+                    <span class="data-val">16 Cycles</span>
+                    <span class="data-desc">8-bit 乘法仅需周期数</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">93.75% ↓</span>
+                    <span class="data-desc">延迟缩短 (vs 传统SC)</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">1.9 倍 ↑</span>
+                    <span class="data-desc">面积效率提升</span>
+                </div>
+            </div>
         </div>
-    </article>
+
+        <div class="paper-block">
+            <div class="paper-header">
+                <span class="paper-tag">成果四：鲁棒性与应用</span>
+                <div class="paper-name">OXC：相关性不敏感的高精度乘法器与图像处理应用 <a href="#ref-list" class="cite-ref">[4]</a></div>
+            </div>
+
+            <div class="tech-deep-dive">
+                <b>技术核心：</b> 传统随机计算最怕输入信号之间“太相似”（高度相关）。OXC 乘法器通过非缩放加法器设计，使其对信号相关性免疫。我们进一步在图像处理任务中验证了其抗干扰能力。
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="4_fig8.png" alt="比特翻转下的误差曲线"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 7：比特翻转容错测试。</strong>
+                        横轴代表乘数值，纵轴代表误差。当我们在电路中人为引入比特翻转错误（模拟忆阻器噪声）时，OXC 的误差波动远小于传统方法，展现出卓越的硬件鲁棒性。
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="4_fig1.png" alt="Peppers 图像去噪实验效果图"
+                         style="width: 100%; height: 650px; object-fit: contain; background-color: #fbfbfb; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="img-caption">
+                        <strong>图 8：图像处理应用实测。</strong>
+                        在对 Peppers 图像施加 20% 噪声的情况下，基于 OXC 的高斯滤波电路实现了 14.1dB 的信噪比（SNR），视觉效果与二进制精确计算几乎无异。
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-panel">
+                <div class="data-unit">
+                    <span class="data-val">54.80% ↑</span>
+                    <span class="data-desc">计算精度提升</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">82.50% ↓</span>
+                    <span class="data-desc">晶体管数量节省</span>
+                </div>
+                <div class="data-unit">
+                    <span class="data-val">14.1 dB</span>
+                    <span class="data-desc">图像恢复信噪比 (SNR)</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="ref-section" id="ref-list">
+        <h3>📚 参考文献 (References)</h3>
+        <ol class="ref-list">
+            <li>
+                Tong, T.; He, Q.; Nie, X.; Zhao, Y. Design of Low-Cost and Highly Energy-Efficient Convolutional Neural Networks Based on Deterministic Encoding. Sensors 2025, 25, 3127. https://doi.org/10.3390/s25103127.
+            </li>
+            <li>
+                Q. He et al., "A Cost and Speed Co-Optimized Parallel Stochastic Multiplier for Binary Inputs Supporting Variable Bit-Widths," in IEEE Transactions on Circuits and Systems II: Express Briefs, vol. 72, no. 8, pp. 1068-1072, Aug. 2025, doi: 10.1109/TCSII.2025.3562199.
+            </li>
+            <li>
+                Q. He, Y. Zhao, Z. Zhang, X. Nie, S. Xiong and K. Zhao, "A High-precision Stochastic Computing Multiplier with Co-optimization of Area and Latency," 2025 IEEE 16th International Conference on ASIC (ASICON), Kunming, China, 2025, pp. 1-4, doi: 10.1109/ASICON66040.2025.11325971.
+            </li>
+            <li>
+                潘仁昊,赵凯,赵钰迪.一种低输入要求的高精度随机计算乘法器[J].北京信息科技大学学报（自然科学版）,2024,39(3):48-52.
+            </li>
+        </ol>
+    </section>
 
 </div>
 
 <footer>
-    <p>本研究受国家自然科学基金 (No. 92264105) 等项目资助 [cite: 717, 833, 1545]</p>
-    <p>© 2026 低功耗集成电路研究小组 | 北京信息科技大学</p>
+    <div class="funding-info">
+        项目资助：本项目受国家自然科学基金 (No. 92264105) 资助。
+    </div>
+    <div class="copyright">
+        © 2026 北京信息科技大学 信息与通信工程学院 | AI传感与计算团队
+    </div>
 </footer>
 
 </body>
